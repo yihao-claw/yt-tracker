@@ -7,8 +7,8 @@ YouTube 頻道監控與分析推送。
 ### Step 1 — 預檢（Pre-check）
 
 ```bash
-cd /home/node/.openclaw/workspace
-PATH="$HOME/.deno/bin:$PATH" python3 scripts/yt-check-new.py --frequency ${FREQUENCY}
+cd /home/node/.openclaw/workspace/projects/yt-tracker
+PATH="$HOME/.deno/bin:$PATH" python3 yt-check-new.py --frequency ${FREQUENCY}
 ```
 
 - `${FREQUENCY}` = `hourly` 或 `daily`，由 cron message 指定
@@ -18,11 +18,11 @@ PATH="$HOME/.deno/bin:$PATH" python3 scripts/yt-check-new.py --frequency ${FREQU
 ### Step 2 — 預載字幕/轉錄
 
 ```bash
-cd /home/node/.openclaw/workspace
+cd /home/node/.openclaw/workspace/projects/yt-tracker
 ## 先讀取 API key：
 GROQ_KEY=$(python3 -c "import json; print(json.load(open('/home/node/.openclaw/agents/bird/agent/secrets/groq.json'))['GROQ_API_KEY'])")
 
-PATH="$HOME/.deno/bin:$PATH" GROQ_API_KEY="$GROQ_KEY" python3 scripts/yt-preload.py -o /tmp/yt-preload-${FREQUENCY}
+PATH="$HOME/.deno/bin:$PATH" GROQ_API_KEY="$GROQ_KEY" python3 yt-preload.py -o /tmp/yt-preload-${FREQUENCY}
 ```
 
 讀取 `/tmp/yt-preload-${FREQUENCY}/summary.json` 取得影片清單。
@@ -59,6 +59,6 @@ PATH="$HOME/.deno/bin:$PATH" GROQ_API_KEY="$GROQ_KEY" python3 scripts/yt-preload
 
 ### Step 5 — 更新狀態
 
-更新 `scripts/yt-tracker-state.json`：
+更新 `yt-tracker-state.json`（同目錄）：
 - 把 videoId 加入 `lastSeenVideoIds`
 - 更新 `lastNotifiedAt`
