@@ -1,0 +1,90 @@
+[
+  {
+    "channelId": "UCGWYKICLOE8Wxy7q3eYXmPA",
+    "name": "最佳拍档",
+    "handle": "@bestpartners",
+    "category": "AI/科技",
+    "frequency": "hourly",
+    "enabled": true
+  },
+  {
+    "channelId": "UCq_uARg8CRY2YeV2loQ7O_A",
+    "name": "Up Only Tech",
+    "handle": "@Uponlytech",
+    "category": "AI/科技",
+    "frequency": "hourly",
+    "enabled": true
+  },
+  {
+    "channelId": "UCVWyAAEdSe8y8BQkYir6iqQ",
+    "name": "金點子",
+    "handle": "@thuyang6963",
+    "category": "黃金/大宗商品",
+    "frequency": "daily",
+    "enabled": true
+  },
+  {
+    "channelId": "UCVGYz_TsbJRiDykog88EFQg",
+    "name": "D的財富鏈",
+    "handle": "@DWealthChain",
+    "category": "美股分析",
+    "frequency": "daily",
+    "enabled": true
+  },
+  {
+    "channelId": "UCDT7QFSo2znU9BXryYECATg",
+    "name": "在美理財",
+    "handle": "@usfinance",
+    "category": "美國投資/稅務",
+    "frequency": "daily",
+    "enabled": true
+  },
+  {
+    "channelId": "UCv496KjsTSTpJ4sGfHZ8_Qw",
+    "name": "StayRich小資理財",
+    "handle": "@stayrich_ustv",
+    "category": "台股/美股/總經",
+    "frequency": "daily",
+    "enabled": true
+  },
+  {
+    "channelId": "UC99pEneQfxE8Tg3uNa9QXEw",
+    "name": "投資嗨什麼",
+    "handle": "@hi2inv",
+    "category": "ETF/股票/債券",
+    "frequency": "daily",
+    "enabled": true
+  },
+  {
+    "channelId": "UCK-qc_POQZwWrMg-Pr-oYtg",
+    "name": "SHIN LI",
+    "handle": "@shinli",
+    "category": "個人理財/被動收入",
+    "frequency": "daily",
+    "enabled": true
+  },
+  {
+    "channelId": "UCd5AYYgeVHSO8eafpnkix6A",
+    "name": "硅谷101",
+    "handle": "@SiliconValley101",
+    "category": "科技投資/創投",
+    "frequency": "daily",
+    "enabled": true
+  },
+  {
+    "channelId": "UC_ZgKNywKxWY3bTydtotTUA",
+    "name": "劉瑆",
+    "handle": "@liuliuxing",
+    "category": "新手理財/投資心法",
+    "frequency": "daily",
+    "enabled": true
+  },
+  {
+    "channelId": "UCXUP_aBLQBNFgLjvnrMTHtw",
+    "name": "尼可拉斯楊Live精",
+    "handle": "@nicolasyounglive",
+    "category": "投資/財經",
+    "frequency": "daily",
+    "enabled": true
+  }
+]
