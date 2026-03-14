@@ -161,11 +161,12 @@ def main():
             if entries:
                 results[cid] = entries
 
-    # Compare against state
+    # Compare against state — use lastNotifiedAt keys as ground truth
+    # (lastSeenVideoIds is unreliable: yt-dlp fallback may bulk-add unsent videos)
     new_videos = {}
     for cid, entries in results.items():
-        seen = set(channels.get(cid, {}).get("lastSeenVideoIds", []))
-        new_entries = [e for e in entries if e["videoId"] not in seen]
+        notified = set(channels.get(cid, {}).get("lastNotifiedAt", {}).keys())
+        new_entries = [e for e in entries if e["videoId"] not in notified]
         if new_entries:
             new_videos[cid] = {
                 "name": channels.get(cid, {}).get("name", cid),
