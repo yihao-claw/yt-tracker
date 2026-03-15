@@ -25,16 +25,30 @@ python3 yt-check-new.py --frequency hourly
 - `hasNew: false` → 回覆 **HEARTBEAT_OK**，結束
 - `hasNew: true` → 繼續
 
-### Step 2 — 推送即時通知（輕量格式）
+### Step 2 — 快速分析 + 推送
 
-對每部新影片，直接發送簡短通知（**不讀轉錄、不做 web_search**）：
+對每部新影片：
 
+**① web_search**（1次）：搜尋 `{影片標題} {頻道名} site:youtube.com OR {講者名}` 取得背景
+**② 整合寫出 2-3 行重點**：這支影片是誰、講什麼、為什麼值得看
+**③ 嘗試 yt-dlp 字幕**（可選，若 30 秒內無字幕則跳過）：
+
+```bash
+timeout 30 yt-dlp --write-auto-sub --sub-lang en --skip-download \
+  --output "/tmp/%(id)s" "https://www.youtube.com/watch?v={videoId}" 2>/dev/null
 ```
-📺 [頻道名] 新影片通知
+
+若有字幕，取前 1500 字補充核心觀點。
+
+**發送格式：**
+```
+📺 [頻道名]
 🎬 [標題]
 🔗 https://youtube.com/watch?v=[videoId]
 
-⏰ 剛發布，詳細分析將於每日報告中呈現。
+👤 [講者/來源背景一句話]
+📌 [核心主題 2-3 行，說明為什麼這支影片值得看]
+💡 [一個關鍵洞察或數據點]
 ```
 
 發送方式：`message` tool
