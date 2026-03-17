@@ -15,6 +15,15 @@ YouTube 頻道監控與分析推送。
 
 > ⚡ 目標：偵測新影片並立即發出**有實質內容**的通知。每部影片必做 web_search，有字幕則補充。
 
+### Step 0 — 環境預檢（每次必做）
+
+確保 yt-dlp 已安裝，若缺失則自動安裝：
+
+```bash
+which yt-dlp || curl -sL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+  -o /usr/local/bin/yt-dlp && chmod +x /usr/local/bin/yt-dlp
+```
+
 ### Step 1 — 預檢
 
 ```bash
@@ -51,7 +60,13 @@ curl -s -X POST https://api.groq.com/openai/v1/audio/transcriptions \
   -F "response_format=text"
 ```
 
-> ⚠️ **無法取得任何內容時（字幕和轉錄都失敗）→ 直接略過這支影片，但仍更新 state 標記為已見。不發 Telegram 通知。** 這包含真正的會員限定影片、地區限制、或任何無法存取的影片。
+> ⚠️ **字幕和轉錄都失敗時 → 嘗試 YouTube Data API fallback**：
+> ```bash
+> YT_KEY=$(python3 -c "import json; print(json.load(open('/home/node/.openclaw/agents/bird/agent/secrets/youtube.json'))['YOUTUBE_API_KEY'])" 2>/dev/null || echo "")
+> # 若有 API key，抓影片描述當內容基礎：
+> curl -s "https://www.googleapis.com/youtube/v3/videos?id={videoId}&part=snippet&key=$YT_KEY" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['items'][0]['snippet']['description'])" 2>/dev/null
+> ```
+> 若 API 也失敗（或無 key）→ 直接略過這支影片，但仍更新 state 標記為已見。不發 Telegram 通知。這包含真正的會員限定影片、地區限制、或任何無法存取的影片。
 
 **② web_search**（1次，僅在有字幕/轉錄內容後才做）：搜尋 `{影片標題} {頻道名}` 取得補充背景
 
@@ -85,6 +100,13 @@ curl -s -X POST https://api.groq.com/openai/v1/audio/transcriptions \
 ## Daily 模式（完整分析）
 
 > 🔬 目標：深度分析每部影片，提供投資/科技洞察
+
+### Step 0 — 環境預檢（每次必做）
+
+```bash
+which yt-dlp || curl -sL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+  -o /usr/local/bin/yt-dlp && chmod +x /usr/local/bin/yt-dlp
+```
 
 ### Step 1 — 預檢
 
