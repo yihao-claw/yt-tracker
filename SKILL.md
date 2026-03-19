@@ -1,4 +1,4 @@
-# YT Tracker Skill — Bird 🐦
+# YT Tracker Skill — April 🐦
 
 YouTube 頻道監控與分析推送。
 
