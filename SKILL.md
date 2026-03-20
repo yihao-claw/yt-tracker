@@ -38,7 +38,9 @@ python3 yt-check-new.py --frequency hourly
 
 對每部新影片：
 
-**① 嘗試取得字幕/轉錄**（必做，這是判斷是否推送的門檻）：
+**① 會員限定早期偵測**：若 yt-dlp 輸出含 `members-only` 或 `This video is available to this channel's members` → 立即標記為已見，**跳過所有後續步驟，不發通知**。不需嘗試 Groq 或 YouTube API。
+
+**② 嘗試取得字幕/轉錄**（必做，這是判斷是否推送的門檻）：
 
 ```bash
 # 先試 yt-dlp 字幕（含中文和英文）
